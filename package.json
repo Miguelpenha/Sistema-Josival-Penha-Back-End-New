@@ -5,12 +5,13 @@
   "main": "app.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --ignore-watch node_modules src/index.ts",
-    "start": "tsc && node dist/index.js",
-    "test": "jest --detectOpenHandles",
-    "testar": "artillery quick -o ./artillery.json -c 100 -n 100 http://localhost:3000/api/alunos && artillery report -o artillery.html artillery.json && node commands/testar.js"
+    "start": "npm run tsc && pm2-runtime start ecosystem.config.js --env production",
+    "testar": "artillery quick -o ./artillery.json -c 100 -n 100 http://localhost:3000/api/alunos && artillery report -o artillery.html artillery.json",
+    "postinstall": "npm run tsc && rm -v -rf src",
+    "tsc": "./node_modules/typescript/bin/tsc"
   },
   "keywords": [],
-  "author": "Miguel Penha <miguel.penha1@gmail.com> (https://portfolio-sand-xi.vercel.app/)",
+  "author": "Miguel Penha <miguel.penha1@gmail.com> (https://portfolio-miguelpenha.vercel.app)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Miguelpenha/Sistema-Josival-Penha-Back-End/issues",
